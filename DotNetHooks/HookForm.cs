@@ -15,7 +15,10 @@ namespace DotNetHooks
     public partial class HookForm : Form
     {
 
+       
         
+       
+       
 
         private delegate IntPtr HookProc(int nCode, IntPtr wParam, IntPtr lParam);
         #region DLL Import
@@ -53,6 +56,7 @@ namespace DotNetHooks
 
         public HookForm()
         {
+            
             InitializeComponent();
         }
 
@@ -70,6 +74,7 @@ namespace DotNetHooks
             public int flags;
             public int time;
             public int dwExtraInfo;
+           
         }
 
 
@@ -170,6 +175,39 @@ namespace DotNetHooks
 
         }
 
+        private void textBoxSourceKey_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+            e.Handled = true;
+            e.SuppressKeyPress = true;
+            
+            if (sender is TextBox) (sender as TextBox).Text = e.KeyData.ToString();
+            //source_key = e.KeyData.ToString();
+            //source_key_event = e.KeyData.ToString();
+            
+            
+        }
+
+        private void textBoxNewKey_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+            e.Handled = true;
+            e.SuppressKeyPress = true;
+           
+            if (sender is TextBox) (sender as TextBox).Text = e.KeyData.ToString();
+           
+
+
+        }
+
+        private void buttonAddReplace_Click(object sender, EventArgs e)
+        {
+         
+        }
+        
+
+    
+
 
         #endregion
 
@@ -199,13 +237,7 @@ namespace DotNetHooks
             public IntPtr dwExtraInfo;
         }
 
-        private void textBoxSourceKey_KeyDown(object sender, KeyEventArgs e)
-        {
-            e.Handled = true;
-            e.SuppressKeyPress = true;
-            if(sender is TextBox)(sender as TextBox).Text = e.KeyData.ToString();
-           
-        }
+       
 
         [StructLayout(LayoutKind.Sequential)]
         internal struct INPUT

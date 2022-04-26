@@ -31,11 +31,18 @@ namespace DotNetHooks
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageKeyboard = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBoxNewKey = new System.Windows.Forms.TextBox();
+            this.buttonAddReplace = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxSourceKey = new System.Windows.Forms.TextBox();
+            this.listBoxReplaces = new System.Windows.Forms.ListBox();
             this.buttonStopKb = new System.Windows.Forms.Button();
             this.richTextBoxKbDemo = new System.Windows.Forms.RichTextBox();
             this.buttonStartKb = new System.Windows.Forms.Button();
             this.richTextBoxKb = new System.Windows.Forms.RichTextBox();
             this.tabPageMouse = new System.Windows.Forms.TabPage();
+            this.labelRes = new System.Windows.Forms.Label();
             this.panelDisplay = new System.Windows.Forms.Panel();
             this.buttonStopMs = new System.Windows.Forms.Button();
             this.buttonStartMs = new System.Windows.Forms.Button();
@@ -44,17 +51,10 @@ namespace DotNetHooks
             this.msHookStatus = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.labelRes = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.listBoxReplaces = new System.Windows.Forms.ListBox();
-            this.textBoxSourceKey = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.buttonAddReplace = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.tabControl.SuspendLayout();
             this.tabPageKeyboard.SuspendLayout();
-            this.tabPageMouse.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabPageMouse.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -81,6 +81,63 @@ namespace DotNetHooks
             this.tabPageKeyboard.TabIndex = 0;
             this.tabPageKeyboard.Text = "Keyboard";
             this.tabPageKeyboard.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.textBoxNewKey);
+            this.groupBox1.Controls.Add(this.buttonAddReplace);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.textBoxSourceKey);
+            this.groupBox1.Controls.Add(this.listBoxReplaces);
+            this.groupBox1.Location = new System.Drawing.Point(6, 35);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(215, 182);
+            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Replaces";
+            // 
+            // textBoxNewKey
+            // 
+            this.textBoxNewKey.Location = new System.Drawing.Point(154, 139);
+            this.textBoxNewKey.Name = "textBoxNewKey";
+            this.textBoxNewKey.Size = new System.Drawing.Size(49, 20);
+            this.textBoxNewKey.TabIndex = 5;
+            this.textBoxNewKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxNewKey_KeyDown);
+            // 
+            // buttonAddReplace
+            // 
+            this.buttonAddReplace.Location = new System.Drawing.Point(86, 158);
+            this.buttonAddReplace.Name = "buttonAddReplace";
+            this.buttonAddReplace.Size = new System.Drawing.Size(39, 22);
+            this.buttonAddReplace.TabIndex = 4;
+            this.buttonAddReplace.Text = "+";
+            this.buttonAddReplace.UseVisualStyleBackColor = true;
+            this.buttonAddReplace.Click += new System.EventHandler(this.buttonAddReplace_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(96, 139);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(19, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "-->";
+            // 
+            // textBoxSourceKey
+            // 
+            this.textBoxSourceKey.Location = new System.Drawing.Point(7, 139);
+            this.textBoxSourceKey.Name = "textBoxSourceKey";
+            this.textBoxSourceKey.Size = new System.Drawing.Size(49, 20);
+            this.textBoxSourceKey.TabIndex = 1;
+            this.textBoxSourceKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxSourceKey_KeyDown);
+            // 
+            // listBoxReplaces
+            // 
+            this.listBoxReplaces.FormattingEnabled = true;
+            this.listBoxReplaces.Location = new System.Drawing.Point(7, 19);
+            this.listBoxReplaces.Name = "listBoxReplaces";
+            this.listBoxReplaces.Size = new System.Drawing.Size(196, 108);
+            this.listBoxReplaces.TabIndex = 0;
             // 
             // buttonStopKb
             // 
@@ -132,6 +189,15 @@ namespace DotNetHooks
             this.tabPageMouse.TabIndex = 1;
             this.tabPageMouse.Text = "Mouse";
             this.tabPageMouse.UseVisualStyleBackColor = true;
+            // 
+            // labelRes
+            // 
+            this.labelRes.AutoSize = true;
+            this.labelRes.Location = new System.Drawing.Point(206, 167);
+            this.labelRes.Name = "labelRes";
+            this.labelRes.Size = new System.Drawing.Size(22, 13);
+            this.labelRes.TabIndex = 5;
+            this.labelRes.Text = "[...]";
             // 
             // panelDisplay
             // 
@@ -207,71 +273,6 @@ namespace DotNetHooks
             this.label2.TabIndex = 4;
             this.label2.Text = "Mouse: ";
             // 
-            // labelRes
-            // 
-            this.labelRes.AutoSize = true;
-            this.labelRes.Location = new System.Drawing.Point(206, 167);
-            this.labelRes.Name = "labelRes";
-            this.labelRes.Size = new System.Drawing.Size(22, 13);
-            this.labelRes.TabIndex = 5;
-            this.labelRes.Text = "[...]";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.buttonAddReplace);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBoxSourceKey);
-            this.groupBox1.Controls.Add(this.listBoxReplaces);
-            this.groupBox1.Location = new System.Drawing.Point(6, 35);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(215, 182);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Replaces";
-            // 
-            // listBoxReplaces
-            // 
-            this.listBoxReplaces.FormattingEnabled = true;
-            this.listBoxReplaces.Location = new System.Drawing.Point(7, 19);
-            this.listBoxReplaces.Name = "listBoxReplaces";
-            this.listBoxReplaces.Size = new System.Drawing.Size(196, 108);
-            this.listBoxReplaces.TabIndex = 0;
-            // 
-            // textBoxSourceKey
-            // 
-            this.textBoxSourceKey.Location = new System.Drawing.Point(7, 139);
-            this.textBoxSourceKey.Name = "textBoxSourceKey";
-            this.textBoxSourceKey.Size = new System.Drawing.Size(49, 20);
-            this.textBoxSourceKey.TabIndex = 1;
-            this.textBoxSourceKey.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxSourceKey_KeyDown);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(96, 139);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(19, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "-->";
-            // 
-            // buttonAddReplace
-            // 
-            this.buttonAddReplace.Location = new System.Drawing.Point(86, 158);
-            this.buttonAddReplace.Name = "buttonAddReplace";
-            this.buttonAddReplace.Size = new System.Drawing.Size(39, 22);
-            this.buttonAddReplace.TabIndex = 4;
-            this.buttonAddReplace.Text = "+";
-            this.buttonAddReplace.UseVisualStyleBackColor = true;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(154, 139);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(49, 20);
-            this.textBox2.TabIndex = 5;
-            this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxSourceKey_KeyDown);
-            // 
             // HookForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -287,10 +288,10 @@ namespace DotNetHooks
             this.Load += new System.EventHandler(this.HookForm_Load);
             this.tabControl.ResumeLayout(false);
             this.tabPageKeyboard.ResumeLayout(false);
-            this.tabPageMouse.ResumeLayout(false);
-            this.tabPageMouse.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabPageMouse.ResumeLayout(false);
+            this.tabPageMouse.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -315,7 +316,7 @@ namespace DotNetHooks
         private System.Windows.Forms.Panel panelDisplay;
         private System.Windows.Forms.Label labelRes;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxNewKey;
         private System.Windows.Forms.Button buttonAddReplace;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxSourceKey;
